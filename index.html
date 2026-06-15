@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decentralized Glass Calculator</title>
+  <!-- Google Fonts for Outfit and JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <!-- Animated background blobs -->
+  <div class="bg-glow blob-1"></div>
+  <div class="bg-glow blob-2"></div>
+  <div class="bg-glow blob-3"></div>
+
+  <div class="app-container">
+    <!-- Header Section -->
+    <header class="glass-header">
+      <div class="logo-area">
+        <div class="dapp-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1 id="dapp-title">DApp Calculator</h1>
+          <span class="subtitle">Decentralized Arithmetic Ledger</span>
+        </div>
+      </div>
+      
+      <div class="header-controls">
+        <div id="network-badge" class="badge network-badge hidden">
+          <span class="indicator"></span>
+          <span id="network-name">Local Ganache</span>
+        </div>
+        <button id="connect-wallet-btn" class="connect-btn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+            <path d="M18 12a2 2 0 0 0 0 4h4v-4z"></path>
+          </svg>
+          <span>Connect Wallet</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="grid-layout">
+      <!-- Left side: The main calculator panel -->
+      <section class="calculator-panel">
+        <div class="glass-card main-calc-card">
+          <div class="calc-screen">
+            <div id="calc-expression" class="expression">Enter values below</div>
+            <div id="calc-display" class="display">0</div>
+          </div>
+          
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label for="num-a">Number A</label>
+              <input type="number" id="num-a" placeholder="0" step="any">
+            </div>
+            <div class="input-group">
+              <label for="num-b">Number B</label>
+              <input type="number" id="num-b" placeholder="0" step="any">
+            </div>
+          </div>
+
+          <div class="calc-operators">
+            <button class="op-btn" data-op="add" title="Add Value A and B">
+              <span class="symbol">+</span>
+              <span class="op-label">ADD</span>
+            </button>
+            <button class="op-btn" data-op="subtract" title="Subtract Value B from A">
+              <span class="symbol">−</span>
+              <span class="op-label">SUBTRACT</span>
+            </button>
+            <button class="op-btn" data-op="multiply" title="Multiply Value A and B">
+              <span class="symbol">×</span>
+              <span class="op-label">MULTIPLY</span>
+            </button>
+            <button class="op-btn" data-op="divide" title="Divide Value A by B">
+              <span class="symbol">÷</span>
+              <span class="op-label">DIVIDE</span>
+            </button>
+          </div>
+
+          <div class="calc-status" id="tx-status-container">
+            <span class="pulse-icon hidden" id="tx-loading-spinner"></span>
+            <span id="tx-status-text">Ready to calculate. Transactions require MetaMask approval.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right side: Control and history details -->
+      <section class="meta-panel">
+        <!-- Name Manager Card -->
+        <div class="glass-card name-card">
+          <h3>DApp Customization</h3>
+          <p class="card-desc">Configure the application title stored directly on the blockchain.</p>
+          <div class="customizer-form">
+            <input type="text" id="new-name-input" placeholder="Change DApp name...">
+            <button id="set-name-btn" class="action-btn">Update Name</button>
+          </div>
+        </div>
+
+        <!-- History Ledger Card -->
+        <div class="glass-card ledger-card">
+          <div class="ledger-header">
+            <h3>Blockchain History</h3>
+            <span id="ledger-count" class="count-badge">0 txs</span>
+          </div>
+          <p class="card-desc">Real-time event log of computations finalized on the ledger.</p>
+          <div class="ledger-list" id="ledger-items">
+            <!-- Dynamic entries loaded here -->
+            <div class="ledger-empty">
+              <p>No computations recorded yet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Decentralized Calculator &bull; Powered by Solidity & Web3.js</p>
+    </footer>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

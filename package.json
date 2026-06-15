@@ -1,0 +1,17 @@
+{
+  "name": "calculator-dapp",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node api.js && vite",
+    "build": "node api.js && vite build",
+    "compile": "truffle compile",
+    "migrate": "truffle migrate --reset"
+  },
+  "dependencies": {
+    "web3": "^4.1.1"
+  },
+  "devDependencies": {
+    "truffle": "^5.11.5",
+    "vite": "^4.4.9"
+  }
+}
